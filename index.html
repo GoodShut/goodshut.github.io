@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> COC tactics </title>
-    <meta name='viewport' content='width=device-width' />
+    <meta name='viewport' content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes, initial-scale=1.0">
     <link href='style.css' rel='stylesheet'>
+    <script src='data.js'></script>
     <script defer src='script.js'></script>
   </head>
   <body>
-    <main id='main'>
+    <main>
+      <nav class='nav'>
+        <div class='nav__subgroup'>
+          <div class='nav__subgroup--name'> 티어 </div>
+          <div class='nav__subgroup--box'><label><input type='checkbox' value='TH14' onclick='CheckboxClick(this)'>14</label></div>
+          <div class='nav__subgroup--box'><label><input type='checkbox' value='TH13' onclick='CheckboxClick(this)'>13</label></div>
+          <div class='nav__subgroup--box'><label><input type='checkbox' value='TH12' onclick='CheckboxClick(this)'>12</label></div>
+          <div class='nav__subgroup--box'><label><input type='checkbox' value='TH11' onclick='CheckboxClick(this)'>11</label></div>
+          <div class='nav__subgroup--box'><label><input type='checkbox' value='TH10' onclick='CheckboxClick(this)'>10 -</label></div>
+        </div>
+        <div class='nav__subgroup'>
+          <div class='nav__subgroup--name'> 전략 </div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='QH' onclick='CheckboxClick(this)'>퀸힐</label></div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='HM' onclick='CheckboxClick(this)'>광호</label></div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='LL' onclick='CheckboxClick(this)'>라벌</label></div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='DG' onclick='CheckboxClick(this)'>용</label></div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='DR' onclick='CheckboxClick(this)'>드라</label></div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='PM' onclick='CheckboxClick(this)'>페슈법</label></div>
+            <div class='nav__subgroup--box'><label><input type='checkbox' value='CL' onclick='CheckboxClick(this)'>복제</label></div>
+        </div>
+      </nav>
+      <div>
+        <article>
+        </article>
+        <div class='pagenation'></div>
+      </div>
     </main>
   </body>
 </html>
