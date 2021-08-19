@@ -61,6 +61,7 @@ function CheckboxClick(box){
 
 function LoadContents(passedIndex, startIndex, count){
   ClearChildren(MAINFIELD);
+  console.log(passedIndex);
   for(let i = 0; i < count; i++){
     let index = passedIndex[startIndex + i];
     if (index !== undefined){
