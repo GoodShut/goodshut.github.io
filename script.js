@@ -1,16 +1,41 @@
 const MAINFIELD = document.getElementsByTagName('article')[0];
-const FILTER = {tags :[], lastindex: 0};
+const PAGENATION = document.querySelector('.pagenation');
+const FILTER = {tags :[], passed: [], currentpage: 1};
 const INITIALLOAD = 4;
 
-function SetPageNation(){
-  let count = CONTENTS.length;
-  let pages = Math.floor(count / 4);
+function SetPageNation(count){
+  ClearChildren(PAGENATION);
+  FILTER.currentpage = 1;
+  let pages = Math.floor((count - 1) / 4);
+  if (pages === 0){
+    return
+  }
+  for(let i = 0; i <= pages ;i++){
+    let child = document.createElement('button');
+    child.className = 'pagenation__indexbutton'
+    child.textContent = i + 1;
+    if (i === 0){
+      child.classList.add('pagenation__indexbutton--selected')
+    }
+    child.addEventListener('click', function(event){
+      let page = Math.floor(event.target.textContent);
+      if (page === FILTER.currentpage){
+        return
+      }else{
+        FILTER.currentpage = page;
+        LoadContents(FILTER.passed, (page - 1) * 4, 4);
+        document.querySelector('.pagenation__indexbutton--selected').classList.remove('pagenation__indexbutton--selected');
+        event.target.classList.add('pagenation__indexbutton--selected');
+      }
+    });
+    PAGENATION.appendChild(child);
+  }
   return
 };
 
 function CheckboxClick(box){
   let tag = box.value
-  let passedIndex = [];
+  FILTER.passed = [];
   if (box.checked) {
     if (!FILTER.tags.includes(tag)){
       FILTER.tags.push(tag);
@@ -23,17 +48,19 @@ function CheckboxClick(box){
       }
     }
   }
-  ClearChildren(MAINFIELD);
   for(let i = 0; i < CONTENTS.length; i++){
     if (IsPassFilter(CONTENTS[i].tags, FILTER.tags)){
-      passedIndex.push(i);
+      FILTER.passed.push(i);
     }
   }
-  LoadContents(passedIndex, 0, 4);
+  FILTER.currentpage = 1;
+  LoadContents(FILTER.passed, 0, 4);
+  SetPageNation(FILTER.passed.length);
   return
 }
 
 function LoadContents(passedIndex, startIndex, count){
+  ClearChildren(MAINFIELD);
   for(let i = 0; i < count; i++){
     let index = passedIndex[startIndex + i];
     if (index !== undefined){
@@ -52,23 +79,38 @@ function LoadContents(passedIndex, startIndex, count){
   return
 }
 
-function IsPassFilter(test, filter){
+function IsPassFilter(test, filters){
   let passTier = false;
-  let passTierExisted = false;
+  let passLayout = false;
   let passStrat = true;
-  if (filter.length){
-    for(let i = 0; i < filter.length; i++){
-      if (filter[i].includes('TH')) {
+  let passTierExisted = false;
+  let passLayoutExisted = false;
+  let filterCount = filters.length;
+  if (filterCount){
+    for(let i = 0; i < filterCount; i++){
+      let filter = filters[i];
+      if (filter.includes('TH_')) {
         passTierExisted = true;
-        passTier = passTier || test.includes(filter[i])
-      }else{
-        passStrat = passStrat && test.includes(filter[i])
+        passTier = passTier || test.includes(filter)
+      }else if(filter.includes('LO_')){
+        passLayoutExisted = true;
+        passLayout = passLayout || test.includes(filter)
+      }else if(filter.includes('ST_')){
+        passStrat = passStrat && test.includes(filter)
       }
     }
     if (passTierExisted){
-      return passTier && passStrat
+      if (passLayoutExisted){
+        return passTier && passStrat && passLayout
+      }else{
+        return passTier && passStrat
+      }
     }else{
-      return passStrat
+      if (passLayoutExisted){
+        return passStrat && passLayout
+      }else{
+        return passStrat
+      }
     }
   }else{
     return true
@@ -85,8 +127,18 @@ function SetYoutubeAttributes(element, src){
   return
 };
 
-LoadContents([0, 1, 2, 3], 0, 4);
+function Main(){
+  for(let i = 0; i < CONTENTS.length; i++){
+    FILTER.passed.push(i);
+  }
+  LoadContents([0, 1, 2, 3], 0, 4);
+  SetPageNation(CONTENTS.length);
+  return
+}
+Main();
 
+
+/////////////////////////Functions///////////////////////////////
 function ClearChildren(element){
   while(element.firstChild){
     element.removeChild(element.lastChild);
