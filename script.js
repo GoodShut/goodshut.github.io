@@ -3,35 +3,82 @@ const PAGENATION = document.querySelector('.pagenation');
 const FILTER = {tags :[], passed: [], currentpage: 1};
 const INITIALLOAD = 4;
 
-function SetPageNation(count){
+function SetPageNation(startPage){
   ClearChildren(PAGENATION);
-  FILTER.currentpage = 1;
-  let pages = Math.floor((count - 1) / 4);
-  if (pages === 0){
+  let count = FILTER.passed.length;
+  let pages = Math.floor((count - 1) / 4) + 1;
+  if (pages === 1){
     return
   }
-  for(let i = 0; i <= pages ;i++){
+  if (startPage !== 1){
     let child = document.createElement('button');
-    child.className = 'pagenation__indexbutton'
-    child.textContent = i + 1;
+    child.className = 'pagenation__indexbutton';
+    child.value = (startPage - 5);
+    child.textContent = '<<';
+    child.addEventListener('click', PrevPageChapter);
+    PAGENATION.appendChild(child);
+  }
+  for(let i = 0; i < 5 ;i++){
+    let page = startPage + i;
+    if (page > pages){
+      return
+    }
+    let child = document.createElement('button');
+    child.className = 'pagenation__indexbutton';
+    child.textContent = page;
     if (i === 0){
       child.classList.add('pagenation__indexbutton--selected')
     }
-    child.addEventListener('click', function(event){
-      let page = Math.floor(event.target.textContent);
-      if (page === FILTER.currentpage){
-        return
-      }else{
-        FILTER.currentpage = page;
-        LoadContents(FILTER.passed, (page - 1) * 4, 4);
-        document.querySelector('.pagenation__indexbutton--selected').classList.remove('pagenation__indexbutton--selected');
-        event.target.classList.add('pagenation__indexbutton--selected');
-      }
-    });
+    child.addEventListener('click', PageButtonClicked);
+    PAGENATION.appendChild(child);
+  }
+  if ((startPage + 4) < pages){
+    let child = document.createElement('button');
+    child.className = 'pagenation__indexbutton';
+    child.value = (startPage + 5);
+    child.textContent = '>>';
+    child.addEventListener('click', NextPageChapter);
     PAGENATION.appendChild(child);
   }
   return
-};
+}
+
+function PrevPageChapter(event){
+  let startPage = Math.floor(event.target.value);
+  FILTER.currentpage = startPage + 4;
+  SetPageNation(startPage);
+  let queryClass = 'pagenation__indexbutton--selected';
+  document.querySelector('.' + queryClass).classList.remove(queryClass)
+  PAGENATION.lastElementChild.previousElementSibling.classList.add(queryClass);
+  LoadContents(FILTER.passed, (startPage + 3) * 4, 4);
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  return
+}
+
+function NextPageChapter(event){
+  let startPage = Math.floor(event.target.value);
+  FILTER.currentpage = startPage;
+  SetPageNation(startPage);
+  LoadContents(FILTER.passed, (startPage - 1) * 4, 4);
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  return
+}
+
+
+function PageButtonClicked(event){
+  let page = Math.floor(event.target.textContent);
+  if (page === FILTER.currentpage){
+    return
+  }else{
+    FILTER.currentpage = page;
+    LoadContents(FILTER.passed, (page - 1) * 4, 4);
+    let queryClass = 'pagenation__indexbutton--selected';
+    document.querySelector('.' + queryClass).classList.remove(queryClass);
+    event.target.classList.add(queryClass);
+  }
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  return
+}
 
 function CheckboxClick(box){
   let tag = box.value
@@ -55,7 +102,7 @@ function CheckboxClick(box){
   }
   FILTER.currentpage = 1;
   LoadContents(FILTER.passed, 0, 4);
-  SetPageNation(FILTER.passed.length);
+  SetPageNation(1);
   return
 }
 
@@ -132,7 +179,7 @@ function Main(){
     FILTER.passed.push(i);
   }
   LoadContents([0, 1, 2, 3], 0, 4);
-  SetPageNation(CONTENTS.length);
+  SetPageNation(1);
   return
 }
 Main();
