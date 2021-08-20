@@ -6,5 +6,7 @@ const CONTENTS = [
   {videoId: 'LuhzYk2GSX0'
   ,tags: ['TH_12', 'LO_IL', 'ST_QH', 'ST_LL']},
   {videoId: 'liSeQta5GYU'
-  ,tags: ['TH_14', 'LO_SQ', 'ST_QH', 'ST_DR']}
+  ,tags: ['TH_14', 'LO_SQ', 'ST_QH', 'ST_DR']},
+  {videoId: 'unc-kaFfv9Q'
+  ,tags: ['TH_13', 'LO_PZ', 'ST_QH', 'ST_DR']}
 ];
