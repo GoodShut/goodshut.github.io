@@ -64,7 +64,8 @@ class Swipe {
 }
 const swiper = new Swipe(document.body);
 swiper.onRight(function(){
-  let currentPageButton = document.querySelector('pagenation__indexbutton--selected');
+  alert('onRight');
+  let currentPageButton = document.querySelector('.pagenation__indexbutton--selected');
   let prevPageButton = currentPageButton.previousElementSibling;
   if (prevPageButton){
     prevPageButton.click();
@@ -72,7 +73,8 @@ swiper.onRight(function(){
   return
 });
 swiper.onLeft(function(){
-  let currentPageButton = document.querySelector('pagenation__indexbutton--selected');
+  alert('onLeft');
+  let currentPageButton = document.querySelector('.pagenation__indexbutton--selected');
   let nextPageButton = currentPageButton.nextElementSibling;
   if (nextPageButton){
     nextPageButton.click();
