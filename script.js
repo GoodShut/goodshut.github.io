@@ -58,8 +58,8 @@ class Swipe {
     }
     run() {
         this.element.addEventListener('touchmove', function(evt) {
-            this.handleTouchMove(evt).bind(this);
-        }.bind(this), false);
+            this.handleTouchMove(evt);
+        }, false);
     }
 }
 const swiper = new Swipe(document.body);
