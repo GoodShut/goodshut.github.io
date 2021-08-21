@@ -1,4 +1,12 @@
 const CONTENTS = [
+  {videoId: 'NuXmVKZk-4c'
+  ,tags: ['TH_14', 'LO_IL', 'ST_QH', 'ST_DR']},
+  {videoId: 'l8cqOFExZRQ'
+  ,tags: ['TH_13', 'LO_SQ', 'ST_QH', 'ST_DR']},
+  {videoId: 'thZtKXnAMP0'
+  ,tags: ['TH_12', 'LO_AS', 'ST_QH', 'ST_LL']},
+  {videoId: 'Qppx2hoC56Y'
+  ,tags: ['TH_14', 'LO_PZ', 'ST_QH', 'ST_DR']},
   {videoId: 'ttpv8_t4UiQ'
   ,tags: ['TH_14', 'LO_SM', 'ST_QH', 'ST_DR']},
   {videoId: 'EEDox5OPqs8'
