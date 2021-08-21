@@ -12,7 +12,7 @@ class Swipe {
         this.element.addEventListener('touchstart', function(evt) {
             this.xDown = evt.touches[0].clientX;
             this.yDown = evt.touches[0].clientY;
-        }.bind(this), false);
+        }, false);
 
     }
     onLeft(callback) {
