@@ -1,4 +1,8 @@
 const CONTENTS = [
+  {videoId: '1tqynCtwN6w'
+  ,tags: ['TH_14', 'LO_SM', 'ST_IV', 'ST_SM', 'ST_LL']},
+  {videoId: 'Gy2C5SUvd-g'
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_LL']},
   {videoId: 'uSiFZPKFSKo'
   ,tags: ['TH_14', 'ST_CL', 'ST_DR', 'ST_DG', 'ST_OS']},
   {videoId: 'NuXmVKZk-4c'
