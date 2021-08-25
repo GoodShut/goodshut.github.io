@@ -1,12 +1,21 @@
 main {
+  display: -ms-grid;
+  -ms-grid-columns: 120px 1fr;
+  -ms-grid-rows: 1fr;
   display: grid;
   grid-template-columns: 120px 1fr;
+  grid-template-rows: 1fr;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
 nav {
+  -ms-grid-column: 1;
   height: 100%;
+}
+
+.mainpage {
+  -ms-grid-column: 2;
 }
 
 .pagenation {
@@ -62,7 +71,9 @@ input[type=checkbox] {
 }
 @media (max-width:700px) {
   main {
+    -ms-grid-columns: none;
     grid-template-columns: none;
+    -ms-grid-rows: 100px 1fr;
     grid-template-rows: 100px 1fr;
   }
   .coc {
