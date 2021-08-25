@@ -30,6 +30,11 @@ nav {
   height: 30px;
 }
 
+.pagenation__indexbutton:hover {
+  background-color: black;
+  color: white;
+}
+
 .pagenation__indexbutton--selected {
   background-color: black;
   color: white;
@@ -69,12 +74,22 @@ input[type=checkbox] {
   margin-left: 5px;
   margin-right: 10px;
 }
+
 @media (max-width:700px) {
   main {
-    -ms-grid-columns: none;
-    grid-template-columns: none;
+    -ms-grid-columns: 1fr;
     -ms-grid-rows: 100px 1fr;
+    grid-template-columns: none;
     grid-template-rows: 100px 1fr;
+  }
+  nav {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    height: 100%;
+  }
+  .mainpage {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
   }
   .coc {
     width: 100%;
@@ -101,11 +116,9 @@ input[type=checkbox] {
 
 @media (max-width:400px) {
   .nav__subgroup--name {
-    display: inline-block;
     font-size: 0.9rem;
   }
   .nav__subgroup--box {
-    display: inline-block;
     font-size: 0.8rem;
   }
   .nav__subgroup--box label input{
