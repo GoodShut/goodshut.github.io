@@ -40,7 +40,6 @@ function SetPageNation(startPage){
     child.addEventListener('click', NextPageChapter);
     PAGENATION.appendChild(child);
   }
-  return
 }
 
 function PrevPageChapter(event){
@@ -52,7 +51,6 @@ function PrevPageChapter(event){
   PAGENATION.lastElementChild.previousElementSibling.classList.add(queryClass);
   LoadContents(FILTER.passed, (startPage + 3) * 4, 4);
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-  return
 }
 
 function NextPageChapter(event){
@@ -61,7 +59,6 @@ function NextPageChapter(event){
   SetPageNation(startPage);
   LoadContents(FILTER.passed, (startPage - 1) * 4, 4);
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-  return
 }
 
 
@@ -77,7 +74,6 @@ function PageButtonClicked(event){
     event.target.classList.add(queryClass);
   }
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-  return
 }
 
 function CheckboxClick(box){
@@ -103,7 +99,6 @@ function CheckboxClick(box){
   FILTER.currentpage = 1;
   LoadContents(FILTER.passed, 0, 4);
   SetPageNation(1);
-  return
 }
 
 function LoadContents(passedIndex, startIndex, count){
@@ -123,7 +118,6 @@ function LoadContents(passedIndex, startIndex, count){
       return
     }
   }
-  return
 }
 
 function IsPassFilter(test, filters){
@@ -171,8 +165,7 @@ function SetYoutubeAttributes(element, src){
   element.setAttribute('allowFullScreen', '');
   element.setAttribute('frameborder', '0');
   element.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-  return
-};
+}
 
 function Main(){
   for(let i = 0; i < CONTENTS.length; i++){
@@ -180,7 +173,6 @@ function Main(){
   }
   LoadContents([0, 1, 2, 3], 0, 4);
   SetPageNation(1);
-  return
 }
 Main();
 
@@ -240,7 +232,6 @@ function ClearChildren(element){
   while(element.firstChild){
     element.removeChild(element.lastChild);
   }
-  return
 };
 
 /*
