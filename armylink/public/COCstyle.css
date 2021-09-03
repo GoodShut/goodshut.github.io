@@ -1,0 +1,394 @@
+@font-face {
+  font-family: 'clashmagic';
+  src: url('/public/fonts/Clash-Regular.otf') format('opentype');
+}
+
+html {
+  box-sizing: border-box;
+  font-family: clashmagic, Verdana, Arial, Helvetica, sans-serif;
+}
+
+.army__tierselect {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.army__infotable {
+  position: relative;
+  width: 90%;
+  margin: 5px auto;
+  font-size: 0.9rem;
+}
+
+.army__infotable__unitcount {
+  display: inline-block;
+  border-radius: 0.6rem;
+  background-color: rgba(207,207,201, 0.7);
+  text-align: right;
+  vertical-align: top;
+}
+.army__infotable__unitcount__icon {
+  display: inline-block;
+  background-image: url('/public/COCimages/misc.png');
+  background-size: 75px 29px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  width: 23px;
+  height: 30px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+.army__infotable__unitcount__count {
+  display: inline-block;
+  width: 30px;
+  line-height: 30px;
+}
+.army__infotable__unitcount__totalcount {
+  display: inline-block;
+  width: 45px;
+  line-height: 30px;
+}
+.army__infotable__spellcount {
+  display: inline-block;
+  border-radius: 0.6rem;
+  background-color: rgba(207,207,201, 0.7);
+  vertical-align: top;
+}
+.army__infotable__spellcount__icon {
+  display: inline-block;
+  background-image: url('/public/COCimages/misc.png');
+  background-size: 75px 29px;
+  background-repeat: no-repeat;
+  background-position: -23px 0;
+  width: 32px;
+  height: 30px;
+  vertical-align: top;
+}
+.army__infotable__spellcount__count {
+  display: inline-block;
+  width: 30px;
+  text-align: right;
+  line-height: 30px;
+}
+.army__infotable__spellcount__totalcount {
+  display: inline-block;
+  width: 30px;
+  line-height: 30px;
+}
+.army__infotable__message {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+}
+
+.army__tierselect__tier {
+  display: inline-block;
+  width: 80px;
+}
+
+.army__unitdisplay {
+  width: 90%;
+  height: 170px;
+  overflow-y: auto;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 0.9rem;
+  background-color: rgba(207,207,201, 0.2);
+}
+
+.army__unitdisplay button {
+  display: inline-block;
+  position: relative;
+  user-select: none;
+  background-image: url('/public/COCimages/allunits.png');
+  background-size: 800px 480px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  margin: 2px;
+  border: 1px solid black;
+  border-radius: 0.8rem;
+
+}
+
+.army__unitdisplay__count {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  font-family: clashmagic;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.army__unitdisplay__minusimg {
+  position: absolute;
+  display: inline-block;
+  user-select: none;
+  background-image: url('/public/COCimages/misc.png');
+  background-size: 75px 29px;
+  background-repeat: no-repeat;
+  background-position: -55px 0;
+  top: 2px;
+  left: 55px;
+  width: 20px;
+  height: 20px;
+}
+
+.army__unitselect {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.army__unitselect button {
+  display: inline-block;
+  position: relative;
+  background-image: url('/public/COCimages/allunits.png');
+  background-size: 800px 480px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  margin: 2px auto;
+  border: 1px solid black;
+  border-radius: 1.2rem;
+  box-shadow: 2px 3px 0 rgba(0,0,0,0.5);
+}
+
+.army__unitselect--clickable:active {
+  transform: scale(0.98);
+  top: 2px;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+.army__unitselect--disabled, .army__unitselect--disabledSU {
+  -moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+}
+.army__unitselect--disabledTH {
+  -moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  opacity: 0.3;
+}
+
+.army__units--barbarian {
+  background-position: 0 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--archer {
+  background-position: -81px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--goblin {
+  background-position: -161px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--giant {
+  background-position: -241px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--wallbreaker {
+  background-position: -321px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--balloon {
+  background-position: -401px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--wizard {
+  background-position: -481px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--healer {
+  background-position: -561px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--dragon {
+  background-position: -641px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--pekka {
+  background-position: -721px 0;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--babydragon {
+  background-position: 0 -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--miner {
+  background-position: -81px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--electrodragon {
+  background-position: -161px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--golem {
+  background-position: -241px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--yeti {
+  background-position: -321px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--dragonrider {
+  background-position: -401px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--minion {
+  background-position: -481px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--hogrider {
+  background-position: -561px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--valkyrie {
+  background-position: -641px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--witch {
+  background-position: -721px -81px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--lavahound {
+  background-position: 0 -161px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--bowler {
+  background-position: -81px -161px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--icegolem {
+  background-position: -161px -161px;
+  background-color: rgb(140, 188, 224);
+}
+.army__units--headhunter {
+  background-position: -241px -161px;
+  background-color: rgb(140, 188, 224);
+}
+.army__superunits--barbarian {
+  background-position: -321px -161px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--archer {
+  background-position: -401px -161px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--goblin {
+  background-position: -481px -161px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--giant {
+  background-position: -561px -161px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--wallbreaker {
+  background-position: -641px -161px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--balloon {
+  background-position: -721px -161px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--wizard {
+  background-position: 0 -241px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--infernodragon {
+  background-position: -81px -241px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--minion {
+  background-position: -161px -241px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--valkyrie {
+  background-position: -241px -241px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--witch {
+  background-position: -321px -241px;
+  background-color: rgb(177, 72, 87);
+}
+.army__superunits--icehound {
+  background-position: -401px -241px;
+  background-color: rgb(177, 72, 87);
+}
+.army__spells--lightning {
+  background-position: -481px -241px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--healing {
+  background-position: -561px -241px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--rage {
+  background-position: -641px -241px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--jump {
+  background-position: -721px -241px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--freeze {
+  background-position: 0 -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--clone {
+  background-position: -81px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--invisibility {
+  background-position: -161px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--poison {
+  background-position: -241px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--earthquake {
+  background-position: -321px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--haste {
+  background-position: -401px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--skeleton {
+  background-position: -481px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__spells--bat {
+  background-position: -561px -321px;
+  background-color: rgb(112, 91, 169);
+}
+.army__siegemachines--wallwrecker {
+  background-position: 0 -401px;
+  background-color: rgb(140, 188, 224);
+}
+.army__siegemachines--battleblimp {
+  background-position: -81px -401px;
+  background-color: rgb(140, 188, 224);
+}
+.army__siegemachines--stoneslammer {
+  background-position: -161px -401px;
+  background-color: rgb(140, 188, 224);
+}
+.army__siegemachines--siegebarracks {
+  background-position: -241px -401px;
+  background-color: rgb(140, 188, 224);
+}
+.army__siegemachines--loglauncher {
+  background-position: -321px -401px;
+  background-color: rgb(140, 188, 224);
+}
