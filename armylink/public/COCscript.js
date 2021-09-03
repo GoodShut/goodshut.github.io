@@ -37,12 +37,30 @@ function TierClickListener(event){
 function InitUnitSelect(type){
   'use strict';
   const unitSelect = document.querySelector('.army__unitselect__' + type);
+  unitSelect.addEventListener('touchstart', UnitSelectTouchStart);
+  unitSelect.addEventListener('touchend', UnitSelectTouchEnd);
   for(const key in window[type.toUpperCase()]){
     let button = document.createElement('button');
     button.className = 'army__' + type + '--' + key;
     button.value = type + '_' + key;
     button.addEventListener('click', UnitSelectClickListener)
     unitSelect.appendChild(button);
+  }
+}
+
+function UnitSelectTouchStart(event){
+  'use strict';
+  let target = event.target;
+  if (target.tagName === 'button'){
+    target.classList.add('army__unitselect--clickable--active');
+  }
+}
+
+function UnitSelectTouchEnd(event){
+  'use strict';
+  let target = event.target;
+  if (target.tagName === 'button'){
+    target.classList.remove('army__unitselect--clickable--active');
   }
 }
 
