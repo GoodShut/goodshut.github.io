@@ -8,6 +8,10 @@ html {
   font-family: clashmagic, Verdana, Arial, Helvetica, sans-serif;
 }
 
+body {
+  touch-action: manipulation;
+}
+
 .army__tierselect {
   width: 90%;
   margin: 0 auto;
