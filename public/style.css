@@ -1,3 +1,7 @@
+body {
+  touch-action: manipulation;
+}
+
 main {
   display: -ms-grid;
   -ms-grid-columns: 120px 1fr;
