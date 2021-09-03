@@ -140,7 +140,7 @@ body {
 @media (max-width: 700px) {
   .army__unitdisplay button {
     transform: scale(0.7);
-    margin: calc(-80px * (1 - 0.7)) calc(-80px * (1 - 0.7)) calc(-80px * (1 - 0.7)) calc(-80px * (1 - 0.7));
+    margin: calc(-40px * (1 - 0.7)) calc(-40px * (1 - 0.7)) calc(-40px * (1 - 0.7)) calc(-40px * (1 - 0.7));
   }
 }
 @media (max-width: 400px) {
