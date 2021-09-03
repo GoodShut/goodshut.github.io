@@ -13,18 +13,23 @@ body {
 }
 
 .army__tierselect {
+  user-select: none;
   width: 90%;
   margin: 0 auto;
   font-size: 1.2rem;
 }
+.army__tierselect__tier {
+  display: inline-block;
+  width: 80px;
+}
 
 .army__infotable {
   position: relative;
+  user-select: none;
   width: 90%;
   margin: 5px auto;
   font-size: 0.9rem;
 }
-
 .army__infotable__unitcount {
   display: inline-block;
   border-radius: 0.6rem;
@@ -86,21 +91,15 @@ body {
   line-height: 30px;
 }
 
-.army__tierselect__tier {
-  display: inline-block;
-  width: 80px;
-}
-
 .army__unitdisplay {
+  user-select: none;
   width: 90%;
-  height: 170px;
-  overflow-y: auto;
+  min-height: 170px;
   margin: 0 auto;
   border: 1px solid black;
   border-radius: 0.9rem;
   background-color: rgba(207,207,201, 0.2);
 }
-
 .army__unitdisplay button {
   display: inline-block;
   position: relative;
@@ -114,20 +113,17 @@ body {
   margin: 2px;
   border: 1px solid black;
   border-radius: 0.8rem;
-
 }
-
 .army__unitdisplay__count {
   position: absolute;
   top: 2px;
   left: 5px;
   font-family: clashmagic;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-
 .army__unitdisplay__minusimg {
   position: absolute;
   display: inline-block;
@@ -141,12 +137,21 @@ body {
   width: 20px;
   height: 20px;
 }
-
+@media (max-width: 700px) {
+  .army__unitdisplay button {
+    transform: scale(0.7);
+  }
+}
+@media (max-width: 400px) {
+  .army__unitdisplay button {
+    transform: scale(0.5);
+  }
+}
 .army__unitselect {
+  user-select: none;
   width: 90%;
   margin: 0 auto;
 }
-
 .army__unitselect button {
   display: inline-block;
   position: relative;
@@ -161,7 +166,6 @@ body {
   border-radius: 1.2rem;
   box-shadow: 2px 3px 0 rgba(0,0,0,0.5);
 }
-
 .army__unitselect--clickable:active {
   transform: scale(0.98);
   top: 2px;
@@ -174,7 +178,6 @@ body {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
-  
 }
 .army__unitselect--disabledTH {
   opacity: 0.3;
