@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'clashmagic';
-  src: url('./public/fonts/Clash-Regular.otf') format('opentype');
+  src: url('./fonts/Clash-Regular.otf') format('opentype');
 }
 
 html {
@@ -30,7 +30,7 @@ html {
 }
 .army__infotable__unitcount__icon {
   display: inline-block;
-  background-image: url('./public/COCimages/misc.png');
+  background-image: url('./COCimages/misc.png');
   background-size: 75px 29px;
   background-repeat: no-repeat;
   background-position: 0 0;
@@ -57,7 +57,7 @@ html {
 }
 .army__infotable__spellcount__icon {
   display: inline-block;
-  background-image: url('./public/COCimages/misc.png');
+  background-image: url('./COCimages/misc.png');
   background-size: 75px 29px;
   background-repeat: no-repeat;
   background-position: -23px 0;
@@ -101,7 +101,7 @@ html {
   display: inline-block;
   position: relative;
   user-select: none;
-  background-image: url('./public/COCimages/allunits.png');
+  background-image: url('./COCimages/allunits.png');
   background-size: 800px 480px;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -128,7 +128,7 @@ html {
   position: absolute;
   display: inline-block;
   user-select: none;
-  background-image: url('./public/COCimages/misc.png');
+  background-image: url('./COCimages/misc.png');
   background-size: 75px 29px;
   background-repeat: no-repeat;
   background-position: -55px 0;
@@ -146,7 +146,7 @@ html {
 .army__unitselect button {
   display: inline-block;
   position: relative;
-  background-image: url('./public/COCimages/allunits.png');
+  background-image: url('./COCimages/allunits.png');
   background-size: 800px 480px;
   background-repeat: no-repeat;
   cursor: pointer;
