@@ -276,7 +276,7 @@ Army.prototype.draw = function(canvas, unitType, unitName, count){
   let child;
   for(let i = 0; i < children.length; i++){
     child = children[i];
-    if (child.className.includes(unitType + '--' + unitName)){
+    if (child.className === 'army__' + unitType + '--' + unitName){
       isUnitExist = true;
       break;
     }
