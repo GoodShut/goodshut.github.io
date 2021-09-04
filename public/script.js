@@ -2,11 +2,13 @@ const MAINFIELD = document.getElementsByTagName('article')[0];
 const PAGENATION = document.querySelector('.pagenation');
 const FILTER = {tags :[], passed: [], currentpage: 1};
 const INITIALLOAD = 4;
+const CONTENTSPERPAGE = 4;
 
 function SetPageNation(startPage){
+  'use strict';
   ClearChildren(PAGENATION);
   let count = FILTER.passed.length;
-  let pages = Math.floor((count - 1) / 4) + 1;
+  let pages = Math.floor((count - 1) / CONTENTSPERPAGE) + 1;
   if (pages === 1){
     return
   }
@@ -27,7 +29,7 @@ function SetPageNation(startPage){
     child.className = 'pagenation__indexbutton';
     child.textContent = page;
     if (i === 0){
-      child.classList.add('pagenation__indexbutton--selected')
+      child.classList.add('pagenation__indexbutton--selected');
     }
     child.addEventListener('click', PageButtonClicked);
     PAGENATION.appendChild(child);
@@ -43,32 +45,35 @@ function SetPageNation(startPage){
 }
 
 function PrevPageChapter(event){
+  'use strict';
   let startPage = Math.floor(event.target.value);
   FILTER.currentpage = startPage + 4;
   SetPageNation(startPage);
   let queryClass = 'pagenation__indexbutton--selected';
-  document.querySelector('.' + queryClass).classList.remove(queryClass)
+  document.querySelector('.' + queryClass).classList.remove(queryClass);
   PAGENATION.lastElementChild.previousElementSibling.classList.add(queryClass);
-  LoadContents(FILTER.passed, (startPage + 3) * 4, 4);
+  LoadContents(FILTER.passed, (startPage + 3) * CONTENTSPERPAGE, CONTENTSPERPAGE);
   document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
 
 function NextPageChapter(event){
+  'use strict';
   let startPage = Math.floor(event.target.value);
   FILTER.currentpage = startPage;
   SetPageNation(startPage);
-  LoadContents(FILTER.passed, (startPage - 1) * 4, 4);
+  LoadContents(FILTER.passed, (startPage - 1) * CONTENTSPERPAGE, CONTENTSPERPAGE);
   document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
 
 
 function PageButtonClicked(event){
+  'use strict';
   let page = Math.floor(event.target.textContent);
   if (page === FILTER.currentpage){
     return
   }else{
     FILTER.currentpage = page;
-    LoadContents(FILTER.passed, (page - 1) * 4, 4);
+    LoadContents(FILTER.passed, (page - 1) * CONTENTSPERPAGE, CONTENTSPERPAGE);
     let queryClass = 'pagenation__indexbutton--selected';
     document.querySelector('.' + queryClass).classList.remove(queryClass);
     event.target.classList.add(queryClass);
@@ -77,7 +82,8 @@ function PageButtonClicked(event){
 }
 
 function CheckboxClick(box){
-  let tag = box.value
+  'use strict';
+  let tag = box.value;
   FILTER.passed = [];
   if (box.checked) {
     if (!FILTER.tags.includes(tag)){
@@ -97,23 +103,27 @@ function CheckboxClick(box){
     }
   }
   FILTER.currentpage = 1;
-  LoadContents(FILTER.passed, 0, 4);
+  LoadContents(FILTER.passed, 0, CONTENTSPERPAGE);
   SetPageNation(1);
 }
 
 function LoadContents(passedIndex, startIndex, count){
+  'use strict';
   ClearChildren(MAINFIELD);
   for(let i = 0; i < count; i++){
     let index = passedIndex[startIndex + i];
     if (index !== undefined){
-      let src = 'https://www.youtube-nocookie.com/embed/' + CONTENTS[index].videoId + '?rel=0';
-      let child = document.createElement('div');
-      child.className = 'coc';
-      let grandChild = document.createElement('iframe');
-      grandChild.className = 'COC__youtube'
-      SetYoutubeAttributes(grandChild, src)
-      child.appendChild(grandChild);
-      MAINFIELD.appendChild(child);
+      let src = 'https://www.youtube-nocookie.com/embed/' + CONTENTS[index].videoId + '?rel=0&vq=hd1080';
+      let container = document.createElement('div');
+      let armylink = document.createElement('div');
+      let youtube = document.createElement('iframe');
+      container.className = 'cocvid';
+      armylink.className = 'cocvid__armylink';
+      youtube.className = 'cocvid__youtube';
+      SetYoutubeAttributes(youtube, src);
+      container.appendChild(youtube);
+      container.appendChild(armylink);
+      MAINFIELD.appendChild(container);
     }else{
       return
     }
@@ -121,6 +131,7 @@ function LoadContents(passedIndex, startIndex, count){
 }
 
 function IsPassFilter(test, filters){
+  'use strict';
   let passTier = false;
   let passLayout = false;
   let passStrat = true;
@@ -132,12 +143,12 @@ function IsPassFilter(test, filters){
       let filter = filters[i];
       if (filter.includes('TH_')) {
         passTierExisted = true;
-        passTier = passTier || test.includes(filter)
+        passTier = passTier || test.includes(filter);
       }else if(filter.includes('LO_')){
         passLayoutExisted = true;
-        passLayout = passLayout || test.includes(filter)
+        passLayout = passLayout || test.includes(filter);
       }else if(filter.includes('ST_')){
-        passStrat = passStrat && test.includes(filter)
+        passStrat = passStrat && test.includes(filter);
       }
     }
     if (passTierExisted){
@@ -159,6 +170,7 @@ function IsPassFilter(test, filters){
 }
 
 function SetYoutubeAttributes(element, src){
+  'use strict';
   element.src = src;
   element.width = '50%';
   element.height = '500px';
@@ -168,10 +180,11 @@ function SetYoutubeAttributes(element, src){
 }
 
 function Main(){
+  'use strict';
   for(let i = 0; i < CONTENTS.length; i++){
     FILTER.passed.push(i);
   }
-  LoadContents([0, 1, 2, 3], 0, 4);
+  LoadContents([0, 1, 2, 3], 0, CONTENTSPERPAGE);
   SetPageNation(1);
 }
 Main();
