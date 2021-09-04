@@ -85,10 +85,19 @@ body {
   width: 30px;
   line-height: 30px;
 }
-.army__infotable__message {
+.army__infotable__link {
   display: inline-block;
   height: 30px;
   line-height: 30px;
+}
+.army__infotable__link__generator {
+  margin-left: 20px;
+  height: 30px;
+  font-family: inherit;
+  color: white;
+  background-color: rgb(203,247,116);
+  border-radius: 0.7rem;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .army__unitdisplay {
@@ -194,6 +203,15 @@ body {
   }
 }
 @media (max-width: 400px) {
+  .army__tierselect {
+    font-size: 0.9rem;
+  }
+  .army__infotable__link {
+    display: block;
+  }
+  .army__infotable__link__generator {
+    margin-left: 0;
+  }
   .army__unitdisplay button, .army__unitselect button  {
     transform: scale(0.5);
     margin: calc(-40px * (1 - 0.5)) calc(-40px * (1 - 0.5)) calc(-40px * (1 - 0.5)) calc(-40px * (1 - 0.5));
