@@ -1,7 +1,3 @@
-body {
-  touch-action: manipulation;
-}
-
 main {
   display: -ms-grid;
   -ms-grid-columns: 120px 1fr;
@@ -17,41 +13,6 @@ nav {
   -ms-grid-column: 1;
   height: 100%;
 }
-
-.mainpage {
-  -ms-grid-column: 2;
-}
-
-.pagenation {
-  text-align: center;
-  padding: 0;
-}
-
-.pagenation__indexbutton {
-  border: 1px solid black;
-  margin: 3px;
-  width: 8%;
-  height: 30px;
-}
-
-.pagenation__indexbutton:hover {
-  background-color: black;
-  color: white;
-}
-
-.pagenation__indexbutton--selected {
-  background-color: black;
-  color: white;
-}
-.coc {
-  display: inline-block;
-  position:relative;
-  padding-bottom:56.25%;
-  padding-top:30px;
-  width: 50%;
-  height:0;
-  overflow:hidden;
-}
 .nav__subgroup--name {
   vertical-align: middle;
   font-size: 1.3rem;
@@ -60,14 +21,6 @@ nav {
   vertical-align: middle;
   font-size: 1.1rem;
 }
-.coc iframe{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:90%;
-}
-
 input[type=checkbox] {
   -ms-transform: scale(1.4); /* IE */
   -moz-transform: scale(1.4); /* FF */
@@ -77,6 +30,43 @@ input[type=checkbox] {
 .nav__subgroup--box label input{
   margin-left: 5px;
   margin-right: 10px;
+}
+
+.mainpage {
+  -ms-grid-column: 2;
+  text-align: center;
+  margin-top: 10px;
+}
+.cocvid {
+  display: inline-block;
+  position: relative;
+  margin: 3px 10px;
+  overflow:hidden;
+}
+.cocvid__youtube {
+  width: 426px;
+  height: 240px;
+}
+.cocvid__armylink {
+  min-height: 30px;
+}
+
+.pagenation {
+  padding: 0;
+}
+.pagenation__indexbutton {
+  border: 1px solid black;
+  margin: 3px;
+  width: 8%;
+  height: 30px;
+}
+.pagenation__indexbutton:hover {
+  background-color: black;
+  color: white;
+}
+.pagenation__indexbutton--selected {
+  background-color: black;
+  color: white;
 }
 
 @media (max-width:700px) {
