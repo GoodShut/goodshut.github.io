@@ -4,6 +4,7 @@ let army;
 function InitArmyBox(){
   'use strict';
   const tierSelect = document.querySelector('.army__tierselect');
+  const unitSelect = document.querySelector('.army__unitselect');
   for(let i = 1; i <= MAXHALL; i++){
     let container = document.createElement('div');
     let label = document.createElement('label');
@@ -21,6 +22,9 @@ function InitArmyBox(){
   InitUnitSelect('superunits');
   InitUnitSelect('spells');
   InitUnitSelect('siegemachines');
+  unitSelect.addEventListener('touchstart', UnitSelectTouchStart);
+  unitSelect.addEventListener('touchend', UnitSelectTouchEnd);
+  unitSelect.addEventListener('click', UnitSelectClickListener);
 }
 
 function TierClickListener(event){
@@ -37,13 +41,10 @@ function TierClickListener(event){
 function InitUnitSelect(type){
   'use strict';
   const unitSelect = document.querySelector('.army__unitselect__' + type);
-  unitSelect.addEventListener('touchstart', UnitSelectTouchStart);
-  unitSelect.addEventListener('touchend', UnitSelectTouchEnd);
   for(const key in window[type.toUpperCase()]){
     let button = document.createElement('button');
     button.className = 'army__' + type + '--' + key;
     button.value = type + '_' + key;
-    button.addEventListener('click', UnitSelectClickListener)
     unitSelect.appendChild(button);
   }
 }
@@ -51,7 +52,7 @@ function InitUnitSelect(type){
 function UnitSelectTouchStart(event){
   'use strict';
   let target = event.target;
-  if (target.tagName === 'button'){
+  if (target.tagName === 'BUTTON'){
     target.classList.add('army__unitselect--clickable--active');
   }
 }
@@ -59,7 +60,7 @@ function UnitSelectTouchStart(event){
 function UnitSelectTouchEnd(event){
   'use strict';
   let target = event.target;
-  if (target.tagName === 'button'){
+  if (target.tagName === 'BUTTON'){
     target.classList.remove('army__unitselect--clickable--active');
   }
 }
@@ -70,6 +71,9 @@ function UnitSelectClickListener(event){
     throw 'SELECT TIER';
   }
   const target = event.target;
+  if (target.tagName !== 'BUTTON'){
+    return
+  }
   const className = target.className;
   if (className.includes('disabled')){
     return
@@ -342,6 +346,15 @@ Army.prototype.displayCount = function(type, total){
     display.innerText = this['food_' + type + 's'];
   }
 }
+Army.prototype.setLinkGenerator = function(){
+  'use strict';
+  const container = document.querySelector('.army__infotable__link');
+  const generator = document.createElement('button');
+  generator.className = 'army__infotable__link__generator';
+  generator.textContent = 'Generate';
+  container.appendChild(generator);
+}
+
 
 function Army(TH){
   'use strict';
@@ -363,6 +376,7 @@ function Army(TH){
   this.displayCount('unit', '');
   this.displayCount('spell', 'total');
   this.displayCount('spell', '');
+  this.setLinkGenerator();
 }
 
 
