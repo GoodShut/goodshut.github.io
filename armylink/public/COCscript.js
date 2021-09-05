@@ -1,5 +1,5 @@
 const MAXHALL = 14;
-let army;
+let ARMY;
 
 function InitArmyBox(){
   'use strict';
@@ -14,7 +14,7 @@ function InitArmyBox(){
     tier.setAttribute('type', 'radio');
     tier.setAttribute('name', 'tiers');
     tier.value = i;
-    tier.addEventListener('click', TierClickListener)
+    label.addEventListener('click', TierClickListener)
     tierSelect.appendChild(container).appendChild(label).appendChild(tier);
     label.appendChild(document.createTextNode('TH ' + i));
   }
@@ -26,29 +26,31 @@ function InitArmyBox(){
   unitSelect.addEventListener('touchend', UnitSelectTouchEnd);
   unitSelect.addEventListener('click', UnitSelectClickListener);
 }
-
-function TierClickListener(event){
-  'use strict';
-  let tier = Number(event.target.value);
-  if (army){
-    army.reset(tier);
-    ClearChildren(document.querySelector('.army__unitdisplay'));
-  }else{
-    army = new Army(tier);
-  }
-}
-
 function InitUnitSelect(type){
   'use strict';
   const unitSelect = document.querySelector('.army__unitselect__' + type);
   for(const key in window[type.toUpperCase()]){
     let button = document.createElement('button');
     button.className = 'army__' + type + '--' + key;
+    button.classList.add('army__unitselect--disabledTH');
     button.value = type + '_' + key;
     unitSelect.appendChild(button);
   }
 }
-
+function TierClickListener(event){
+  'use strict';
+  let target = event.target;
+  if (target.tagName !== 'INPUT'){
+    return
+  }
+  let tier = Number(event.target.value);
+  if (ARMY){
+    ARMY.reset(tier);
+    ClearChildren(document.querySelector('.army__unitdisplay'));
+  }else{
+    ARMY = new Army(tier);
+  }
+}
 function UnitSelectTouchStart(event){
   'use strict';
   let target = event.target;
@@ -56,7 +58,6 @@ function UnitSelectTouchStart(event){
     target.classList.add('army__unitselect--clickable--active');
   }
 }
-
 function UnitSelectTouchEnd(event){
   'use strict';
   let target = event.target;
@@ -64,10 +65,9 @@ function UnitSelectTouchEnd(event){
     target.classList.remove('army__unitselect--clickable--active');
   }
 }
-
 function UnitSelectClickListener(event){
   'use strict';
-  if (army === undefined){
+  if (ARMY === undefined){
     throw 'SELECT TIER';
   }
   const target = event.target;
@@ -79,27 +79,53 @@ function UnitSelectClickListener(event){
     return
   }
   const names = target.value.split('_');
-  army.update(names[0], names[1], 1);
-  army.applyCap(names[0]);
+  ARMY.update(names[0], names[1], 1);
+  ARMY.applyCap(names[0]);
   if (names[0] === 'units'){
-    army.applyCap('superunits');
+    ARMY.applyCap('superunits');
   }else if (names[0] === 'superunits'){
-    army.applyCap('units');
-    army.applySuperUnitCap(names[1], true);
+    ARMY.applyCap('units');
+    ARMY.applySuperUnitCap(names[1], true);
   }
 }
-
 function UnitDisplayClickListener(event){
   'user strict';
   const names = event.currentTarget.value.split('_');
-  army.update(names[0], names[1], -1);
-  army.applyCap(names[0]);
+  ARMY.update(names[0], names[1], -1);
+  ARMY.applyCap(names[0]);
   if (names[0] === 'units'){
-    army.applyCap('superunits');
+    ARMY.applyCap('superunits');
   }else if (names[0] === 'superunits'){
-    army.applyCap('units');
-    army.applySuperUnitCap(names[1], false);
+    ARMY.applyCap('units');
+    ARMY.applySuperUnitCap(names[1], false);
   }
+}
+function GenerateLink(){
+  'use strict';
+  if (ARMY === undefined){
+    return
+  }else{
+    if ((Object.keys(ARMY.units).length === 0) && (Object.keys(ARMY.superunits).length === 0) && (Object.keys(ARMY.spells).length === 0) && (Object.keys(ARMY.siegemachines).length === 0)){
+      return
+    }
+  }
+  const container = document.querySelector('.army__infotable__link');
+  let linkahref = document.querySelector('.army__infotable__link__linkahref');
+  let copy = document.querySelector('.army__infotable__link__copy');
+  if (linkahref === null){
+    linkahref = document.createElement('a');
+    linkahref.className = 'army__infotable__link__linkahref';
+    linkahref.textContent = 'LINK';
+    linkahref.target = '_blank';
+    container.appendChild(linkahref);
+  }
+  if (copy === null){
+    copy = document.createElement('button');
+    copy.className = 'army__infotable__link__copy';
+    copy.textContent = 'COPY';
+    container.appendChild(copy);
+  }
+  linkahref.href = 'https://google.com';
 }
 
 InitArmyBox();
@@ -191,6 +217,7 @@ Army.prototype.reset = function(TH){
   this.displayCount('unit', '');
   this.displayCount('spell', 'total');
   this.displayCount('spell', '');
+  this.clearLink();
 }
 Army.prototype.clearCap = function(){
   let matches = document.querySelectorAll('button.army__unitselect--disabled');
@@ -259,7 +286,6 @@ Army.prototype.applySuperUnitCapDisplay = function(){
     }
   }
 }
-
 Army.prototype.getCap = function(unitType){
   'use strict';
   if (unitType === 'superunits'){
@@ -308,6 +334,16 @@ Army.prototype.draw = function(canvas, unitType, unitName, count){
       child.firstChild.innerText = count + 'x';
     }
   }
+  this.clearLink();
+}
+Army.prototype.clearLink = function(){
+  'use strict';
+  if (document.querySelector('.army__infotable__link__linkahref')){
+    document.querySelector('.army__infotable__link__linkahref').remove();
+  }
+  if (document.querySelector('.army__infotable__link__copy')){
+    document.querySelector('.army__infotable__link__copy').remove();
+  }
 }
 Army.prototype.applyUnitSelectCap = function(TH){
   'use strict';
@@ -352,9 +388,9 @@ Army.prototype.setLinkGenerator = function(){
   const generator = document.createElement('button');
   generator.className = 'army__infotable__link__generator';
   generator.textContent = 'Generate';
+  generator.addEventListener('click', GenerateLink);
   container.appendChild(generator);
 }
-
 
 function Army(TH){
   'use strict';
@@ -406,7 +442,7 @@ if (!String.prototype.includes) {
     }
   };
 }
-
+//POLYFILL for element.remove() by github-chenzhenxi
 (function (arr) {
   arr.forEach(function (item) {
     if (item.hasOwnProperty('remove')) {
@@ -422,7 +458,6 @@ if (!String.prototype.includes) {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype].filter(Boolean));
-
 if (!Array.prototype.includes) {
   Object.defineProperty(Array.prototype, 'includes', {
     value: function(searchElement, fromIndex) {
