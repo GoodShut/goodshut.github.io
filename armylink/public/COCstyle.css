@@ -27,6 +27,7 @@ body {
   position: relative;
   user-select: none;
   width: 90%;
+  height: 30px;
   margin: 5px auto;
   font-size: 0.9rem;
 }
@@ -90,7 +91,8 @@ body {
   height: 30px;
   line-height: 30px;
 }
-.army__infotable__link__generator {
+.army__infotable__link__generator, .army__infotable__link__linkahref, .army__infotable__link__copy {
+  display: inline-block;
   margin-left: 20px;
   height: 30px;
   font-family: inherit;
@@ -205,6 +207,9 @@ body {
 @media (max-width: 400px) {
   .army__tierselect {
     font-size: 0.9rem;
+  }
+  .army__infotable {
+    height: auto;
   }
   .army__infotable__link {
     display: block;
