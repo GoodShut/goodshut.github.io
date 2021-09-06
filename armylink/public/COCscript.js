@@ -1,5 +1,25 @@
 const MAXHALL = 14;
 let ARMY;
+var clipboard = new ClipboardJS('.army__infotable__link__copy');
+
+clipboard.on('success', function(e) {
+  let display = document.querySelector('.army__infotable__link');
+  let msg = document.querySelector('.army__infotable__link__copymsg');
+  if (msg !== null) {
+    msg.remove();
+  }
+  msg = document.createElement('span');
+  msg.textContent = '  Copied !';
+  msg.className = 'army__infotable__link__copymsg';
+  display.appendChild(msg);
+  setTimeout(RemoveTimer, 1000, msg);
+  e.clearSelection();
+});
+function RemoveTimer(msg){
+  if (msg instanceof HTMLElement){
+    msg.remove();
+  }
+}
 
 function InitArmyBox(){
   'use strict';
@@ -46,7 +66,9 @@ function TierClickListener(event){
   let tier = Number(event.target.value);
   if (ARMY){
     ARMY.reset(tier);
-    ClearChildren(document.querySelector('.army__unitdisplay'));
+    ClearChildren(document.querySelector('.army__unitdisplay__units'));
+    ClearChildren(document.querySelector('.army__unitdisplay__spells'));
+    ClearChildren(document.querySelector('.army__unitdisplay__siegemachines'));
   }else{
     ARMY = new Army(tier);
   }
@@ -100,33 +122,6 @@ function UnitDisplayClickListener(event){
     ARMY.applySuperUnitCap(names[1], false);
   }
 }
-function GenerateLink(){
-  'use strict';
-  if (ARMY === undefined){
-    return
-  }else{
-    if ((Object.keys(ARMY.units).length === 0) && (Object.keys(ARMY.superunits).length === 0) && (Object.keys(ARMY.spells).length === 0) && (Object.keys(ARMY.siegemachines).length === 0)){
-      return
-    }
-  }
-  const container = document.querySelector('.army__infotable__link');
-  let linkahref = document.querySelector('.army__infotable__link__linkahref');
-  let copy = document.querySelector('.army__infotable__link__copy');
-  if (linkahref === null){
-    linkahref = document.createElement('a');
-    linkahref.className = 'army__infotable__link__linkahref';
-    linkahref.textContent = 'LINK';
-    linkahref.target = '_blank';
-    container.appendChild(linkahref);
-  }
-  if (copy === null){
-    copy = document.createElement('button');
-    copy.className = 'army__infotable__link__copy';
-    copy.textContent = 'COPY';
-    container.appendChild(copy);
-  }
-  linkahref.href = 'https://google.com';
-}
 
 InitArmyBox();
 
@@ -149,7 +144,7 @@ Army.prototype.update = function(unitType, unitName, count){
     if (unitType === 'superunits'){
       foodCategory = 'units';
     }
-    const canvas = 'army__unitdisplay';
+    const canvas = 'army__unitdisplay__';
     if (count > 0){
       let nextFood = 0;
       for(let i = 0; i < count; i++){
@@ -160,10 +155,10 @@ Army.prototype.update = function(unitType, unitName, count){
         const prevCount = this[unitType][unitName];
         if (isNaN(prevCount)) {
           this[unitType][unitName] = 1;
-          this.draw(canvas, unitType, unitName, 1);
+          this.draw(canvas + foodCategory, unitType, unitName, 1);
         }else{
           this[unitType][unitName] = prevCount + 1;
-          this.draw(canvas, unitType, unitName, prevCount + 1);
+          this.draw(canvas + foodCategory, unitType, unitName, prevCount + 1);
         }
         this['food_' + foodCategory] = nextFood;
       }
@@ -180,7 +175,7 @@ Army.prototype.update = function(unitType, unitName, count){
               this[unitType][unitName] = prevCount - 1;
             }
             this['food_' + foodCategory] = this['food_' + foodCategory] - food;
-            this.draw(canvas, unitType, unitName, prevCount - 1);
+            this.draw(canvas + foodCategory, unitType, unitName, prevCount - 1);
           }else{
             throw 'UNIT BELOW ZERO';
           }
@@ -388,8 +383,60 @@ Army.prototype.setLinkGenerator = function(){
   const generator = document.createElement('button');
   generator.className = 'army__infotable__link__generator';
   generator.textContent = 'Generate';
-  generator.addEventListener('click', GenerateLink);
+  generator.addEventListener('click', this.generateLink);
   container.appendChild(generator);
+}
+Army.prototype.generateLink = function(){
+  'use strict';
+  if (ARMY == undefined){
+    throw 'SELECT TIER';
+  }
+  let link = '';
+  const units = ARMY.generateLinkByType('units');
+  const spells = ARMY.generateLinkByType('spells');
+  const siegemachines = ARMY.generateLinkByType('siegemachines');
+  link = units ? link + 'u' + units : '';
+  link = siegemachines ? link + (units? '-' + siegemachines: siegemachines): link;
+  link = spells ? link + 's' + spells : link;
+  if (link === ''){
+    return
+  }else{
+    link = 'https://link.clashofclans.com/?action=CopyArmy&army=' + link;
+  }
+  const container = document.querySelector('.army__infotable__link');
+  let linkahref = document.querySelector('.army__infotable__link__linkahref');
+  let copy = document.querySelector('.army__infotable__link__copy');
+  if (linkahref === null){
+    linkahref = document.createElement('a');
+    linkahref.className = 'army__infotable__link__linkahref';
+    linkahref.textContent = 'LINK';
+    linkahref.target = '_blank';
+    container.appendChild(linkahref);
+  }
+  if (copy === null){
+    copy = document.createElement('button');
+    copy.className = 'army__infotable__link__copy';
+    copy.textContent = 'COPY';
+    container.appendChild(copy);
+  }
+  linkahref.href = link;
+  copy.setAttribute('data-clipboard-text', link);
+}
+Army.prototype.generateLinkByType = function(unitType){
+  'use strict';
+  const blocks = document.querySelector('.army__unitdisplay__' + unitType).children;
+  let str = '';
+  for(let i = 0; i < blocks.length; i++) {
+    const names = blocks[i].value.split('_');
+    const count = ARMY[names[0]][names[1]];
+    const code = window[names[0].toUpperCase()][names[1]].code;
+    if (str === ''){
+      str = count + 'x' + code;
+    }else{
+      str = str + '-' + count + 'x' + code;
+    }
+  }
+  return str
 }
 
 function Army(TH){
