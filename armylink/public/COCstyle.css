@@ -213,6 +213,7 @@ body {
   }
   .army__infotable__link {
     display: block;
+    margin-top: 3px;
   }
   .army__infotable__link__generator {
     margin-left: 0;
