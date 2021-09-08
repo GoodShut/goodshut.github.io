@@ -5,6 +5,7 @@ body {
 header {
   display: block;
   position: fixed;
+  top: 0;
   height: 25px;
   background-color: tomato;
 }
