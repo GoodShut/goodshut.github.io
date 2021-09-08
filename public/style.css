@@ -2,6 +2,13 @@ body {
   margin: 0;
 }
 
+header {
+  display: block;
+  position: fixed;
+  height: 50px;
+  background-color: tomato;
+}
+
 main {
   display: -ms-grid;
   -ms-grid-columns: 120px 1fr;
