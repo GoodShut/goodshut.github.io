@@ -3,7 +3,7 @@
   src: url('./fonts/Clash-Regular.otf') format('opentype');
 }
 
-html {
+* {
   box-sizing: border-box;
   font-family: clashmagic, Verdana, Arial, Helvetica, sans-serif;
 }
@@ -24,7 +24,6 @@ body {
 }
 
 .army__infotable {
-  position: relative;
   user-select: none;
   width: 90%;
   height: 30px;
@@ -58,6 +57,7 @@ body {
   display: inline-block;
   width: 45px;
   line-height: 30px;
+  text-align: left;
 }
 .army__infotable__spellcount {
   display: inline-block;
@@ -90,16 +90,53 @@ body {
   display: inline-block;
   height: 30px;
   line-height: 30px;
+  margin-left: 10px;
 }
+
 .army__infotable__link__generator, .army__infotable__link__linkahref, .army__infotable__link__copy {
   display: inline-block;
-  margin-left: 20px;
-  height: 30px;
-  font-family: inherit;
+  position: relative;
+  width: 100px;
+  height: 28px;
+  top: 1px;
+  padding: 0;
+  border-top: 2px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 2px solid black;
+  border-radius: 0.5rem;
+  background: rgb(110,193,53);
+  background: linear-gradient(0deg, rgba(110,193,53,1) 0%, rgba(139,221,52,0.5) 100%);
+  box-shadow: 0 3px 2px rgba(0,0,0,0.5), inset 0 1px white;
+  vertical-align: top;
+  text-align: center;
+  line-height: 23px;
   color: white;
-  background-color: rgb(203,247,116);
-  border-radius: 0.7rem;
+  font-size: 0.8rem;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.army__infotable__link__generator:active, .army__infotable__link__linkahref:active, .army__infotable__link__copy:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+.army__infotable__link--active {
+  transform: scale(0.98);
+}
+.army__infotable__link__generator__halfinner {
+  position: absolute;
+  mix-blend-mode: soft-light;
+  background-color: white;
+  width: 100%;
+  height: 11px;
+  top: 2px;
+  border-radius: 0.5rem;
+}
+.army__infotable__link__linkahref, .army__infotable__link__copy {
+  width: 60px;
+  margin-left: 10px;
+}
+.army__infotable__link__copied {
+  vertical-align: top;
 }
 
 .army__unitdisplay {
@@ -144,7 +181,7 @@ body {
   background-repeat: no-repeat;
   background-position: -55px 0;
   top: 2px;
-  left: 55px;
+  right: 2px;
   width: 20px;
   height: 20px;
 }
