@@ -4,26 +4,26 @@ var clipboard = new ClipboardJS('.army__infotable__link__copy');
 
 clipboard.on('success', function(e) {
   let display = document.querySelector('.army__infotable__link');
-  let msg = document.querySelector('.army__infotable__link__copymsg');
+  let msg = document.querySelector('.army__infotable__link__copied');
   if (msg !== null) {
     msg.remove();
   }
   msg = document.createElement('span');
   msg.textContent = '  Copied !';
-  msg.className = 'army__infotable__link__copymsg';
+  msg.className = 'army__infotable__link__copied';
   display.appendChild(msg);
   setTimeout(RemoveTimer, 1000, msg);
   e.clearSelection();
 });
 function RemoveTimer(msg){
-  if (msg instanceof HTMLElement){
-    msg.remove();
-  }
+  msg.remove();
+  console.log(msg);
 }
 
 function InitArmyBox(){
   'use strict';
   const tierSelect = document.querySelector('.army__tierselect');
+  const infoLink = document.querySelector('.army__infotable__link');
   const unitSelect = document.querySelector('.army__unitselect');
   for(let i = 1; i <= MAXHALL; i++){
     let container = document.createElement('div');
@@ -42,6 +42,8 @@ function InitArmyBox(){
   InitUnitSelect('superunits');
   InitUnitSelect('spells');
   InitUnitSelect('siegemachines');
+  infoLink.addEventListener('touchstart', InfoLinkTouchStart);
+  infoLink.addEventListener('touchend', InfoLinkTouchEnd);
   unitSelect.addEventListener('touchstart', UnitSelectTouchStart);
   unitSelect.addEventListener('touchend', UnitSelectTouchEnd);
   unitSelect.addEventListener('click', UnitSelectClickListener);
@@ -76,8 +78,11 @@ function TierClickListener(event){
 function UnitSelectTouchStart(event){
   'use strict';
   let target = event.target;
+  let className = target.className;
   if (target.tagName === 'BUTTON'){
-    target.classList.add('army__unitselect--clickable--active');
+    if (!className.includes('disabledTH')){
+      target.classList.add('army__unitselect--clickable--active');
+    }
   }
 }
 function UnitSelectTouchEnd(event){
@@ -85,6 +90,22 @@ function UnitSelectTouchEnd(event){
   let target = event.target;
   if (target.tagName === 'BUTTON'){
     target.classList.remove('army__unitselect--clickable--active');
+  }
+}
+function InfoLinkTouchStart(event){
+  'use strict';
+  let target = event.target;
+  let className = target.className;
+  if (className.includes('generator')||className.includes('linkahrf')||className.includes('copy')){
+    target.classList.add('army__infotable__link--active');
+  }
+}
+function InfoLinkTouchEnd(event){
+  'use strict';
+  let target = event.target;
+  let className = target.className;
+  if (className.includes('generator')||className.includes('linkahrf')||className.includes('copy')){
+    target.classList.remove('army__infotable__link--active');
   }
 }
 function UnitSelectClickListener(event){
@@ -380,11 +401,13 @@ Army.prototype.displayCount = function(type, total){
 Army.prototype.setLinkGenerator = function(){
   'use strict';
   const container = document.querySelector('.army__infotable__link');
-  const generator = document.createElement('button');
-  generator.className = 'army__infotable__link__generator';
-  generator.textContent = 'Generate';
-  generator.addEventListener('click', this.generateLink);
-  container.appendChild(generator);
+  const button = document.createElement('div');
+  const halfinner = document.createElement('div');
+  button.addEventListener('click', this.generateLink);
+  button.className = 'army__infotable__link__generator';
+  button.textContent = 'Generate';
+  halfinner.className = 'army__infotable__link__generator__halfinner';
+  container.appendChild(button).appendChild(halfinner);
 }
 Army.prototype.generateLink = function(){
   'use strict';
@@ -407,17 +430,21 @@ Army.prototype.generateLink = function(){
   let linkahref = document.querySelector('.army__infotable__link__linkahref');
   let copy = document.querySelector('.army__infotable__link__copy');
   if (linkahref === null){
+    const halfinner = document.createElement('div');
+    halfinner.className = 'army__infotable__link__generator__halfinner';
     linkahref = document.createElement('a');
     linkahref.className = 'army__infotable__link__linkahref';
     linkahref.textContent = 'LINK';
     linkahref.target = '_blank';
-    container.appendChild(linkahref);
+    container.appendChild(linkahref).appendChild(halfinner);
   }
   if (copy === null){
+    const halfinner = document.createElement('div');
+    halfinner.className = 'army__infotable__link__generator__halfinner';
     copy = document.createElement('button');
     copy.className = 'army__infotable__link__copy';
     copy.textContent = 'COPY';
-    container.appendChild(copy);
+    container.appendChild(copy).appendChild(halfinner);
   }
   linkahref.href = link;
   copy.setAttribute('data-clipboard-text', link);
