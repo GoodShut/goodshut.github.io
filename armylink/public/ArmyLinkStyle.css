@@ -5,11 +5,23 @@
 
 * {
   box-sizing: border-box;
-  font-family: clashmagic, Verdana, Arial, Helvetica, sans-serif;
 }
 
 body {
   touch-action: manipulation;
+  font-family: clashmagic, Verdana, Arial, Helvetica, sans-serif;
+}
+
+header {
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 32px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+header a {
+  margin-left: 10px;
 }
 
 .army__tierselect {
