@@ -179,6 +179,19 @@ function SetYoutubeAttributes(element, src){
   element.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
 }
 
+function IEFallback(){
+  'use strict';
+  var userAgent = navigator.userAgent;
+  if (userAgent.indexOf('MSIE') > 0){
+    //IE 11 미만 브라우저
+  }else if(userAgent.indexOf('Trident') > 0){
+    //IE 11
+  }else{
+    //IE 이외 브라우저들
+    document.querySelector('.header__fallbackmsg').remove();
+  }
+}
+
 function Main(){
   'use strict';
   for(let i = 0; i < CONTENTS.length; i++){
@@ -186,6 +199,7 @@ function Main(){
   }
   LoadContents([0, 1, 2, 3], 0, CONTENTSPERPAGE);
   SetPageNation(1);
+  IEFallback();
 }
 Main();
 
