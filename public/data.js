@@ -10,9 +10,11 @@ const CONTENTS = [
   {videoId: 'MoWGtbNDPaE'
   ,tags: ['TH_14', 'LO_PZ', 'ST_QH', 'ST_DR']},
   {videoId: 'EI9_pcldOuY'
-  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']},
+  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']
+  ,comment: '퀸힐로 외곽을 훑다가 독수리타워 향해 돌파, 킹+시즈훈련소로 외곽정리. 이후 본대투입'},
   {videoId: 'p4tNO5uBKFI'
-  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']
+  ,comment: '퀸힐로 한쪽 외곽을 훑고, 반대편을 킹+시즈훈련소로 정리. 본대로 중앙돌파'},
   {videoId: 'hiMBNe8kjIw'
   ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
   {videoId: 'wc7Nvfqm7vo'
