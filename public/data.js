@@ -1,4 +1,18 @@
 const CONTENTS = [
+  {videoId: 'Y6mhMQMwMFQ'
+  ,tags: ['TH_14', 'LO_SM', 'ST_QH', 'ST_DR']},
+  {videoId: 'WLJ8aTljm3k'
+  ,tags: ['TH_14', 'LO_SM', 'ST_QH', 'ST_DR']},
+  {videoId: 'Cc9GvBnaJoQ'
+  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']},
+  {videoId: 'agRPf1_hweo'
+  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']},
+  {videoId: 'MoWGtbNDPaE'
+  ,tags: ['TH_14', 'LO_PZ', 'ST_QH', 'ST_DR']},
+  {videoId: 'EI9_pcldOuY'
+  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']},
+  {videoId: 'p4tNO5uBKFI'
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
   {videoId: 'hiMBNe8kjIw'
   ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
   {videoId: 'wc7Nvfqm7vo'
