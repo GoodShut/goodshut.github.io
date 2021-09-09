@@ -2,26 +2,10 @@ const MAXHALL = 14;
 let ARMY;
 var clipboard = new ClipboardJS('.army__infotable__link__copy');
 
-clipboard.on('success', function(e) {
-  let display = document.querySelector('.army__infotable__link');
-  let msg = document.querySelector('.army__infotable__link__copied');
-  if (msg !== null) {
-    msg.remove();
-  }
-  msg = document.createElement('span');
-  msg.textContent = '  Copied !';
-  msg.className = 'army__infotable__link__copied';
-  display.appendChild(msg);
-  setTimeout(RemoveTimer, 1000, msg);
-  e.clearSelection();
-});
-function RemoveTimer(msg){
-  msg.remove();
-  console.log(msg);
-}
-
+InitArmyBox();
 function InitArmyBox(){
   'use strict';
+  IEFallback();
   const tierSelect = document.querySelector('.army__tierselect');
   const infoLink = document.querySelector('.army__infotable__link');
   const unitSelect = document.querySelector('.army__unitselect');
@@ -47,6 +31,21 @@ function InitArmyBox(){
   unitSelect.addEventListener('touchstart', UnitSelectTouchStart);
   unitSelect.addEventListener('touchend', UnitSelectTouchEnd);
   unitSelect.addEventListener('click', UnitSelectClickListener);
+}
+function IEFallback(){
+  'use strict';
+  var userAgent = navigator.userAgent;
+  if (userAgent.indexOf('MSIE') > 0){
+    //IE 11 미만 브라우저
+  }else if(userAgent.indexOf('Trident') > 0){
+    //IE 11
+  }else{
+    //IE 이외 브라우저들
+    let header = document.querySelector('header');
+    if (header) {
+      header.remove();
+    }
+  }
 }
 function InitUnitSelect(type){
   'use strict';
@@ -144,7 +143,23 @@ function UnitDisplayClickListener(event){
   }
 }
 
-InitArmyBox();
+clipboard.on('success', function(e) {
+  let display = document.querySelector('.army__infotable__link');
+  let msg = document.querySelector('.army__infotable__link__copied');
+  if (msg !== null) {
+    msg.remove();
+  }
+  msg = document.createElement('span');
+  msg.textContent = '  Copied !';
+  msg.className = 'army__infotable__link__copied';
+  display.appendChild(msg);
+  setTimeout(RemoveTimer, 1000, msg);
+  e.clearSelection();
+});
+function RemoveTimer(msg){
+  msg.remove();
+  console.log(msg);
+}
 
 Army.prototype.MaxFood_units = [20, 30, 70, 80, 135, 150, 200, 200, 220, 240, 260, 280, 300, 300];
 Army.prototype.MaxFood_spells = [0, 0, 0, 0, 2, 4, 6, 7, 9, 11, 11, 11, 11, 11];
