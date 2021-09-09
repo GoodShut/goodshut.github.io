@@ -4,6 +4,33 @@ const FILTER = {tags :[], passed: [], currentpage: 1};
 const INITIALLOAD = 4;
 const CONTENTSPERPAGE = 4;
 
+Main();
+function Main(){
+  'use strict';
+  IEFallback();
+  for(let i = 0; i < CONTENTS.length; i++){
+    FILTER.passed.push(i);
+  }
+  LoadContents([0, 1, 2, 3], 0, CONTENTSPERPAGE);
+  SetPageNation(1);
+}
+
+function IEFallback(){
+  'use strict';
+  var userAgent = navigator.userAgent;
+  if (userAgent.indexOf('MSIE') > 0){
+    //IE 11 미만 브라우저
+  }else if(userAgent.indexOf('Trident') > 0){
+    //IE 11
+  }else{
+    //IE 이외 브라우저들
+    let header = document.querySelector('header');
+    if (header) {
+      header.remove();
+    }
+  }
+}
+
 function SetPageNation(startPage){
   'use strict';
   ClearChildren(PAGENATION);
@@ -178,30 +205,6 @@ function SetYoutubeAttributes(element, src){
   element.setAttribute('frameborder', '0');
   element.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
 }
-
-function IEFallback(){
-  'use strict';
-  var userAgent = navigator.userAgent;
-  if (userAgent.indexOf('MSIE') > 0){
-    //IE 11 미만 브라우저
-  }else if(userAgent.indexOf('Trident') > 0){
-    //IE 11
-  }else{
-    //IE 이외 브라우저들
-    document.querySelector('.header__fallbackmsg').remove();
-  }
-}
-
-function Main(){
-  'use strict';
-  for(let i = 0; i < CONTENTS.length; i++){
-    FILTER.passed.push(i);
-  }
-  LoadContents([0, 1, 2, 3], 0, CONTENTSPERPAGE);
-  SetPageNation(1);
-  IEFallback();
-}
-Main();
 
 ///// TOUCH, SWIPE EVENT givanse @ stackoverflow /////
 document.addEventListener('touchstart', handleTouchStart, false);
