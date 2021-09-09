@@ -149,6 +149,7 @@ header a {
 }
 .army__infotable__link__copied {
   vertical-align: top;
+  line-height: 30px;
 }
 
 .army__unitdisplay {
