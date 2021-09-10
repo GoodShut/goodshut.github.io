@@ -1,7 +1,6 @@
 const MAINFIELD = document.getElementsByTagName('article')[0];
 const PAGENATION = document.querySelector('.pagenation');
 const FILTER = {tags :[], passed: [], currentpage: 1};
-const INITIALLOAD = 4;
 const CONTENTSPERPAGE = 4;
 
 Main();
@@ -11,6 +10,7 @@ function Main(){
   for(let i = 0; i < CONTENTS.length; i++){
     FILTER.passed.push(i);
   }
+  DrawMainNav();
   LoadContents([0, 1, 2, 3], 0, CONTENTSPERPAGE);
   SetPageNation(1);
 }
@@ -28,6 +28,68 @@ function IEFallback(){
     if (header) {
       header.remove();
     }
+  }
+}
+
+function DrawMainNav(){
+  'use strict';
+  const tiers = [{value: 14, text: 14}, {value: 13, text: 13}, {value: 12, text: 12}, {value: 11, text: 11}, {value: 10, text: '10 -'}];
+  const layouts = [{value: 'PZ', text: '돌돌이'}, {value: 'SQ', text: '네모'}, {value: 'SM', text: '대칭'}, {value: 'AS', text: '비대칭'}, {value: 'IL', text: '섬'}, {value: 'AG', text: '밀집형'}];
+  const strategies = [{value: 'QH', text: '퀸'}, {value: 'HM', text: '광호'}, {value: 'LL', text: '라벌'}, {value: 'DG', text: '용'}, {value: 'DR', text: '드라'}, {value: 'SM', text: '슈법'}, {value: 'CL', text: '복제'}, {value: 'IV', text: '투명'}, {value: 'TR', text: '함정'}, {value: 'OS', text: '외부영상'}];
+  const nav = document.querySelector('.nav');
+  const dl = document.createElement('dl');
+  DrawDl(dl, '티어', 'TH', tiers);
+  DrawDl(dl, '배치', 'LO', layouts);
+  DrawDl(dl, '전략', 'ST', strategies);
+  dl.addEventListener('click', DLClickListener);
+  nav.appendChild(dl);
+}
+
+function DLClickListener(event){
+  'use strict';
+  const box = event.target;
+  if (box.tagName !== 'INPUT'){
+    return
+  }
+  const tag = box.value;
+  FILTER.passed = [];
+  if (box.checked) {
+    if (!FILTER.tags.includes(tag)){
+      FILTER.tags.push(tag);
+    }
+  }else{
+    if (FILTER.tags.includes(tag)){
+      let index = FILTER.tags.indexOf(tag);
+      if (index !== -1) {
+        FILTER.tags.splice(index, 1);
+      }
+    }
+  }
+  for(let i = 0; i < CONTENTS.length; i++){
+    if (IsPassFilter(CONTENTS[i].tags, FILTER.tags)){
+      FILTER.passed.push(i);
+    }
+  }
+  FILTER.currentpage = 1;
+  LoadContents(FILTER.passed, 0, CONTENTSPERPAGE);
+  SetPageNation(1);
+}
+
+function DrawDl(dl, dtName, prefix, dds){
+  'use strict';
+  const container = document.createElement('div');
+  const dt = document.createElement('dt');
+  dt.textContent = dtName;
+  dl.appendChild(container).appendChild(dt);
+  for (let i = 0; i < dds.length; i++){
+    const dd = document.createElement('dd');
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = prefix + '_' + dds[i].value;
+    dd.appendChild(label).appendChild(checkbox);
+    label.appendChild(document.createTextNode(dds[i].text));
+    container.appendChild(dd);
   }
 }
 
@@ -106,32 +168,6 @@ function PageButtonClicked(event){
     event.target.classList.add(queryClass);
   }
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-}
-
-function CheckboxClick(box){
-  'use strict';
-  let tag = box.value;
-  FILTER.passed = [];
-  if (box.checked) {
-    if (!FILTER.tags.includes(tag)){
-      FILTER.tags.push(tag);
-    }
-  }else{
-    if (FILTER.tags.includes(tag)){
-      let index = FILTER.tags.indexOf(tag);
-      if (index !== -1) {
-        FILTER.tags.splice(index, 1);
-      }
-    }
-  }
-  for(let i = 0; i < CONTENTS.length; i++){
-    if (IsPassFilter(CONTENTS[i].tags, FILTER.tags)){
-      FILTER.passed.push(i);
-    }
-  }
-  FILTER.currentpage = 1;
-  LoadContents(FILTER.passed, 0, CONTENTSPERPAGE);
-  SetPageNation(1);
 }
 
 function LoadContents(passedIndex, startIndex, count){
