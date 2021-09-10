@@ -174,18 +174,46 @@ function LoadContents(passedIndex, startIndex, count){
   'use strict';
   ClearChildren(MAINFIELD);
   for(let i = 0; i < count; i++){
-    let index = passedIndex[startIndex + i];
+    const index = passedIndex[startIndex + i];
     if (index !== undefined){
-      let src = 'https://www.youtube-nocookie.com/embed/' + CONTENTS[index].videoId + '?rel=0&vq=hd1080';
-      let container = document.createElement('div');
-      let armylink = document.createElement('div');
-      let youtube = document.createElement('iframe');
+      const src = 'https://www.youtube-nocookie.com/embed/' + CONTENTS[index].videoId + '?rel=0&vq=hd1080';
+      const comment = CONTENTS[index].comment;
+      const armylink = CONTENTS[index].armylink;
+      const baselink = CONTENTS[index].baselink;
+      const container = document.createElement('div');
+      const helper = document.createElement('div');
+      const youtube = document.createElement('iframe');
       container.className = 'cocvid';
-      armylink.className = 'cocvid__armylink';
+      helper.className = 'cocvid__helper';
+      if (comment) {
+        const tip = document.createElement('div');
+        const tipText = document.createElement('span');
+        tip.textContent = '해설: ';
+        tip.className = 'cocvid__helper__tip';
+        tipText.textContent = comment;
+        tipText.className = 'cocvid__helper__tiptext';
+        helper.appendChild(tip).appendChild(tipText);
+      }
+      if (armylink) {
+        const linkahref = document.createElement('a');
+        linkahref.className = 'cocvid__helper__link';
+        linkahref.textContent = 'COPY ARMY';
+        linkahref.target = '_blank';
+        linkahref.href = armylink;
+        helper.appendChild(linkahref);
+      }
+      if (baselink) {
+        const linkahref = document.createElement('a');
+        linkahref.className = 'cocvid__helper__link';
+        linkahref.textContent = 'COPY BASE';
+        linkahref.target = '_blank';
+        linkahref.href = baselink;
+        helper.appendChild(linkahref);
+      }
       youtube.className = 'cocvid__youtube';
       SetYoutubeAttributes(youtube, src);
       container.appendChild(youtube);
-      container.appendChild(armylink);
+      container.appendChild(helper);
       MAINFIELD.appendChild(container);
     }else{
       return
