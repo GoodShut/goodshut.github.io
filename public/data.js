@@ -1,4 +1,22 @@
 const CONTENTS = [
+  {videoId: 'y5XY-QzF0bI'
+  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']},
+  {videoId: 'jac94Ri9Epw'
+  ,tags: ['TH_12', 'LO_IL', 'ST_QH', 'ST_HM']
+  ,comment: '섬진형 시작부분 참고'},
+  {videoId: 'wsVtNdKHRjs'
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']
+  ,comment: '퀸 진행방향 확인 후 반대쪽을 킹+시즈훈련소로 정리하고 본대로 중앙돌파'},
+  {videoId: 'd-pBrDDVH04'
+  ,tags: ['TH_14', 'LO_SQ', 'ST_QH', 'ST_DR']},
+  {videoId: 'oHei61La_sE'
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
+  {videoId: 'k8hX9jIpiPQ'
+  ,tags: ['TH_12', 'LO_IL', 'ST_QH', 'ST_LL']},
+  {videoId: 'zrPL8b36CL8'
+  ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_LL']},
+  {videoId: 'jESASs6ml_4'
+  ,tags: ['TH_12', 'LO_IL', 'ST_QH', 'ST_HM']},
   {videoId: 'JHvO_issWHs'
   ,tags: ['TH_13', 'LO_PZ', 'ST_SM', 'ST_OS']
   ,comment: '광장형 센터홀 파훼법- 8지진 골통발'},
