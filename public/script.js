@@ -35,7 +35,7 @@ function DrawMainNav(){
   'use strict';
   const tiers = [{value: 14, text: 14}, {value: 13, text: 13}, {value: 12, text: 12}, {value: 11, text: 11}, {value: 10, text: '10 -'}];
   const layouts = [{value: 'PZ', text: '돌돌이'}, {value: 'SQ', text: '네모'}, {value: 'SM', text: '대칭'}, {value: 'AS', text: '비대칭'}, {value: 'IL', text: '섬'}, {value: 'AG', text: '밀집형'}];
-  const strategies = [{value: 'QH', text: '퀸'}, {value: 'HM', text: '광호'}, {value: 'LL', text: '라벌'}, {value: 'DG', text: '용'}, {value: 'DR', text: '드라'}, {value: 'SM', text: '슈법'}, {value: 'CL', text: '복제'}, {value: 'IV', text: '투명'}, {value: 'TR', text: '함정'}, {value: 'OS', text: '외부영상'}];
+  const strategies = [{value: 'QH', text: '퀸힐'}, {value: 'HM', text: '광호'}, {value: 'LL', text: '라벌'}, {value: 'DG', text: '용'}, {value: 'DR', text: '드라'}, {value: 'SM', text: '슈법'}, {value: 'CL', text: '복제'}, {value: 'IV', text: '투명'}, {value: 'TR', text: '함정'}, {value: 'OS', text: '외부영상'}];
   const nav = document.querySelector('.nav');
   const dl = document.createElement('dl');
   DrawDl(dl, '티어', 'TH', tiers);
