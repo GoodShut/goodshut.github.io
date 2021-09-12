@@ -47,7 +47,6 @@ main {
   display: grid;
   grid-template-columns: 120px 1fr;
   grid-template-rows: 1fr;
-  box-sizing: border-box;
 }
 
 nav {
@@ -82,9 +81,7 @@ input[type=checkbox] {
 }
 .cocvid {
   display: inline-block;
-  position: relative;
   margin: 3px 10px;
-  overflow:hidden;
 }
 .cocvid__youtube {
   width: 426px;
