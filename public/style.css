@@ -81,6 +81,8 @@ input[type=checkbox] {
 }
 .cocvid {
   display: inline-block;
+  position: relative;
+  overflow: hidden;
   margin: 3px 10px;
 }
 .cocvid__youtube {
