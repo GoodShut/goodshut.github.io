@@ -1,4 +1,19 @@
 const CONTENTS = [
+  {videoId: 'd8TebZajtQs'
+  ,tags: ['TH_14', 'LO_AS', 'ST_QH', 'ST_DR']},
+  {videoId: 'GFMgaiAKHTA'
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
+  {videoId: '6_zB3wzgSg8'
+  ,tags: ['TH_12', 'LO_AS', 'ST_QH', 'ST_HM']},
+  {videoId: 'FsWpjNhqo10'
+  ,tags: ['TH_11', 'LO_SM', 'ST_QH', 'ST_HM']},
+  {videoId: 'fQ7josN2sJ0'
+  ,tags: ['TH_11', 'LO_SM', 'ST_QH', 'ST_HM']},
+  {videoId: 'OnhT3dXxPZI'
+  ,tags: ['TH_11', 'LO_IL', 'ST_QH', 'ST_HM']},
+  {videoId: 'hQ0DQizff0o'
+  ,tags: ['TH_11', 'LO_AS', 'ST_QH', 'ST_HM']
+  ,armylink: 'u5x7-13x24-10x11-8x4-4x5-4x6-1x23s1x2-1x3-2x1-2x5-1x9'},
   {videoId: 'y5XY-QzF0bI'
   ,tags: ['TH_12', 'LO_SM', 'ST_QH', 'ST_HM']},
   {videoId: 'jac94Ri9Epw'
