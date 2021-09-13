@@ -10,7 +10,8 @@ const CONTENTS = [
   {videoId: 'fQ7josN2sJ0'
   ,tags: ['TH_11', 'LO_SM', 'ST_QH', 'ST_HM']},
   {videoId: 'OnhT3dXxPZI'
-  ,tags: ['TH_11', 'LO_IL', 'ST_QH', 'ST_HM']},
+  ,tags: ['TH_11', 'LO_IL', 'ST_QH', 'ST_HM']
+  ,armylink: 'u5x7-14x24-10x11-6x4-4x5-2x23-1x6s2x2-2x5-2x1-1x9'},
   {videoId: 'hQ0DQizff0o'
   ,tags: ['TH_11', 'LO_AS', 'ST_QH', 'ST_HM']
   ,armylink: 'u5x7-13x24-10x11-8x4-4x5-4x6-1x23s1x2-1x3-2x1-2x5-1x9'},
