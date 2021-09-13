@@ -199,7 +199,7 @@ function LoadContents(passedIndex, startIndex, count){
         linkahref.className = 'cocvid__helper__link';
         linkahref.textContent = 'COPY ARMY';
         linkahref.target = '_blank';
-        linkahref.href = armylink;
+        linkahref.href = 'https://link.clashofclans.com/?action=CopyArmy&army=' + armylink;
         helper.appendChild(linkahref);
       }
       if (baselink) {
