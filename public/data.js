@@ -2,9 +2,11 @@ const CONTENTS = [
   {videoId: 'd8TebZajtQs'
   ,tags: ['TH_14', 'LO_AS', 'ST_QH', 'ST_DR']},
   {videoId: 'GFMgaiAKHTA'
-  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']},
+  ,tags: ['TH_12', 'LO_PZ', 'ST_QH', 'ST_HM']
+  ,armylink: 'u5x7-16x24-9x11-3x28-2x23-2x5-2x6-2x1-1x3s2x2-2x5-2x1-1x9'},
   {videoId: '6_zB3wzgSg8'
-  ,tags: ['TH_12', 'LO_AS', 'ST_QH', 'ST_HM']},
+  ,tags: ['TH_12', 'LO_AS', 'ST_QH', 'ST_HM']
+  ,armylink: 'u5x7-16x24-9x11-3x28-3x5-2x23-2x6-2x1s2x2-2x5-2x1-1x9'},
   {videoId: 'FsWpjNhqo10'
   ,tags: ['TH_11', 'LO_SM', 'ST_QH', 'ST_HM']},
   {videoId: 'fQ7josN2sJ0'
