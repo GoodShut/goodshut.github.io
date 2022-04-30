@@ -161,11 +161,11 @@ header a {
   border-radius: 0.9rem;
   background-color: rgba(207,207,201, 0.2);
 }
-.army__unitdisplay button {
+.army__unitdisplay__units button {
   display: inline-block;
   position: relative;
   user-select: none;
-  background-image: url('./COCimages/allunits.png');
+  background-image: url('./COCimages/units.png');
   background-size: 800px 480px;
   background-repeat: no-repeat;
   cursor: pointer;
