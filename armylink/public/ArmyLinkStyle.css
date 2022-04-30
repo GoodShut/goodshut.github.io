@@ -207,8 +207,8 @@ header a {
 .army__unitselect button {
   display: inline-block;
   position: relative;
-  background-image: url('./COCimages/allunits.png');
-  background-size: 800px 480px;
+  background-image: url('./COCimages/units.png');
+  background-size: 800px 240px;
   background-repeat: no-repeat;
   cursor: pointer;
   width: 80px;
