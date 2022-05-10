@@ -109,6 +109,9 @@ window.SUPERUNITS = {'barbarian': {'code': 26,
                             'minTH': 12},
                   'dragon': {'code': 81,
                             'food': 40,
+                            'minTH': 12},
+                  'bowler': {'code': 80,
+                            'food': 30,
                             'minTH': 12}
 };
 window.SPELLS = {'lightning': {'code': 0,
