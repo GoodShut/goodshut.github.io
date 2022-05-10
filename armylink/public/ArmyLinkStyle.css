@@ -204,11 +204,22 @@ header a {
   width: 90%;
   margin: 0 auto;
 }
+.army__unitselect__units > button {
+  background-color: rgb(140, 188, 224);
+}
+.army__unitselect__superunits > button {
+  background-color: rgb(177, 72, 87);
+}
+.army__unitselect__spells > button {
+  background-color: rgb(112, 91, 169);
+}
+.army__unitselect__siegemachines > button {
+  background-color: rgb(140, 188, 224);
+}
 .army__unitselect button {
   display: inline-block;
   position: relative;
-  background-image: url('./COCimages/allunits.png');
-  background-size: 800px 480px;
+  background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
   width: 80px;
@@ -284,11 +295,9 @@ header a {
 }
 
 
-
-
 .army__units--barbarian {
-  background-position: 0 0;
-  background-color: rgb(140, 188, 224);
+  background-image: url('./COCimages/allunits.png');
+  
 }
 .army__units--archer {
   background-position: -81px 0;
