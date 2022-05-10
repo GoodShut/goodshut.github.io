@@ -52,9 +52,6 @@ function InitUnitSelect(type){
   const unitSelect = document.querySelector('.army__unitselect__' + type);
   for(const key in window[type.toUpperCase()]){
     let button = document.createElement('button');
-    //button.className = 'army__' + type + '--' + key;
-    //button.classList.add('army__unitselect--disabledTH');
-    //let bgUrl = "url('./public/COCimages/' + type + '_' + key + '.webp')";
     button.style.backgroundImage = "url('./public/COCimages/" + type + "_" + key + ".webp')";
     button.className = 'army__unitselect--disabledTH';
     button.value = type + '_' + key;
@@ -182,7 +179,6 @@ Army.prototype.update = function(unitType, unitName, count){
     if (unitType === 'superunits'){
       foodCategory = 'units';
     }
-    const canvas = 'army__unitdisplay__';
     if (count > 0){
       let nextFood = 0;
       for(let i = 0; i < count; i++){
@@ -193,10 +189,10 @@ Army.prototype.update = function(unitType, unitName, count){
         const prevCount = this[unitType][unitName];
         if (isNaN(prevCount)) {
           this[unitType][unitName] = 1;
-          this.draw(canvas + foodCategory, unitType, unitName, 1);
+          this.draw(foodCategory, unitType, unitName, 1);
         }else{
           this[unitType][unitName] = prevCount + 1;
-          this.draw(canvas + foodCategory, unitType, unitName, prevCount + 1);
+          this.draw(foodCategory, unitType, unitName, prevCount + 1);
         }
         this['food_' + foodCategory] = nextFood;
       }
@@ -213,7 +209,7 @@ Army.prototype.update = function(unitType, unitName, count){
               this[unitType][unitName] = prevCount - 1;
             }
             this['food_' + foodCategory] = this['food_' + foodCategory] - food;
-            this.draw(canvas + foodCategory, unitType, unitName, prevCount - 1);
+            this.draw(foodCategory, unitType, unitName, prevCount - 1);
           }else{
             throw 'UNIT BELOW ZERO';
           }
@@ -326,8 +322,9 @@ Army.prototype.getCap = function(unitType){
   }
   return this['maxFood_' + unitType] - this['food_' + unitType]
 }
-Army.prototype.draw = function(canvas, unitType, unitName, count){
+Army.prototype.draw = function(foodCategory, unitType, unitName, count){
   'use strict';
+  const canvas = 'army__unitdisplay__' + foodCategory;
   if (canvas instanceof HTMLElement){
   }else if (typeof canvas === 'string'){
     canvas = document.querySelector('.' + canvas);
@@ -353,7 +350,8 @@ Army.prototype.draw = function(canvas, unitType, unitName, count){
   }else {
     if (count === 1){
       child = document.createElement('button');
-      child.className = 'army__' + unitType + '--' + unitName;
+      child.className = 'bgcolor--' + unitType;
+      child.style.backgroundImage = "url('./public/COCimages/" + unitType + "_" + unitName + ".webp')";
       child.value = unitType + '_' + unitName;
       child.addEventListener('click', UnitDisplayClickListener);
       let grandChild = document.createElement('span');
