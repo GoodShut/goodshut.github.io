@@ -324,7 +324,7 @@ Army.prototype.getCap = function(unitType){
 }
 Army.prototype.draw = function(foodCategory, unitType, unitName, count){
   'use strict';
-  const canvas = 'army__unitdisplay__' + foodCategory;
+  let canvas = 'army__unitdisplay__' + foodCategory;
   if (canvas instanceof HTMLElement){
   }else if (typeof canvas === 'string'){
     canvas = document.querySelector('.' + canvas);
