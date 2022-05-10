@@ -305,8 +305,8 @@ Army.prototype.applySuperUnitCapDisplay = function(){
   for (let i = 0; i < unitselect_superunits.length; i++){
     let element = unitselect_superunits[i];
     let isIn = false;
-    for (const keys in this.superunits) {
-      if (element.className.includes(keys)){
+    for (const key in this.superunits) {
+      if (element.value.includes(key)){
         isIn = true;
       }
     }
