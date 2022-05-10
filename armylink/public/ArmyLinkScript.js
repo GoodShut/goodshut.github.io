@@ -55,7 +55,7 @@ function InitUnitSelect(type){
     //button.className = 'army__' + type + '--' + key;
     //button.classList.add('army__unitselect--disabledTH');
     //let bgUrl = "url('./public/COCimages/' + type + '_' + key + '.webp')";
-    button.style.backgroundImage = "url('./public/COCimages/'" + type + "_" + key + ".webp')";
+    button.style.backgroundImage = "url('./public/COCimages/" + type + "_" + key + ".webp')";
     button.className = 'army__unitselect--disabledTH';
     button.value = type + '_' + key;
     unitSelect.appendChild(button);
