@@ -203,16 +203,16 @@ header a {
   width: 90%;
   margin: 0 auto;
 }
-.army__unitselect__units > button {
+.army__unitselect__units > button, bgcolor--units {
   background-color: rgb(140, 188, 224);
 }
-.army__unitselect__superunits > button {
+.army__unitselect__superunits > button, bgcolor--superunits {
   background-color: rgb(177, 72, 87);
 }
-.army__unitselect__spells > button {
+.army__unitselect__spells > button, bgcolor--spells {
   background-color: rgb(112, 91, 169);
 }
-.army__unitselect__siegemachines > button {
+.army__unitselect__siegemachines > button, bgcolor--siegemachines {
   background-color: rgb(140, 188, 224);
 }
 .army__unitselect button {
