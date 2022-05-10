@@ -54,9 +54,8 @@ function InitUnitSelect(type){
     let button = document.createElement('button');
     //button.className = 'army__' + type + '--' + key;
     //button.classList.add('army__unitselect--disabledTH');
-    let bgUrl = './COCimages/' + type + '_' + key + '.webp';
-    console.log(bgUrl);
-    button.style.backgroundImage = bgUrl;
+    //let bgUrl = "url('./public/COCimages/' + type + '_' + key + '.webp')";
+    button.style.backgroundImage = "url('./public/COCimages/'" + type + "_" + key + ".webp')";
     button.className = 'army__unitselect--disabledTH';
     button.value = type + '_' + key;
     unitSelect.appendChild(button);
@@ -162,7 +161,6 @@ clipboard.on('success', function(e) {
 });
 function RemoveTimer(msg){
   msg.remove();
-  console.log(msg);
 }
 
 Army.prototype.MaxFood_units = [20, 30, 70, 80, 135, 150, 200, 200, 220, 240, 260, 280, 300, 300];
