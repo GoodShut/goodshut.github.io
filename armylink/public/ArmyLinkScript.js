@@ -336,7 +336,7 @@ Army.prototype.draw = function(foodCategory, unitType, unitName, count){
   let child;
   for(let i = 0; i < children.length; i++){
     child = children[i];
-    if (child.className === 'army__' + unitType + '--' + unitName){
+    if (child.value === unitType + '_' + unitName){
       isUnitExist = true;
       break;
     }
