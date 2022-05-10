@@ -165,8 +165,7 @@ header a {
   display: inline-block;
   position: relative;
   user-select: none;
-  background-image: url('./COCimages/allunits.png');
-  background-size: 800px 480px;
+  background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
   width: 80px;
